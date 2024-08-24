@@ -1,0 +1,9 @@
+Problem 1: Factory and Singleton Design Pattern Implementation
+
+Problem 2: Grofers Inventory Management System
+
+Problem 3: Zomato Restaurent Management System
+
+Problem 4: Airbnb Property Management System
+
+Problem 5: Swiggy Food Delivery Optimisation System
