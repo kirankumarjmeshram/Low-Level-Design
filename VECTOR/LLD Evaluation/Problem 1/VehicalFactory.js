@@ -1,3 +1,5 @@
+const VehicalRegistry =  require("./VehicalRegistry.js");
+
 class VehicalFactory {
     createVehical(type, specs) {
         let vehical;
@@ -15,7 +17,11 @@ class VehicalFactory {
                 throw new Error('Invalid type');
 
         }
+        VehicalRegistry.getInstance().registerVehical(vehical);
+        return vehical;
     }
+
+    
 }
 
 // 
@@ -58,3 +64,5 @@ class Truck extends Vehical {
         super('Bike', specs);
     }
 }
+
+module.exports = VehicalFactory;
