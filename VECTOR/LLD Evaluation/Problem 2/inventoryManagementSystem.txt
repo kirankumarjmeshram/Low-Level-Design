@@ -1,0 +1,37 @@
+Grofers Inventory Management System
+
+Classes and Methods
+
+Products
+    Attributes
+        id
+        name
+        quantity
+
+    Methods 
+        getId
+        getName
+        getQuantity
+        setQuantity
+        
+
+Warehouse
+    Attributes
+        id
+        location
+        Products
+
+    Methods
+        addProducts
+        updateProductQuantity
+        getProducttQuantity
+
+InventoryManager
+    Attributes
+        warehouse
+    Methods 
+        addWarehouse
+        addProductsToWarehouse
+        updateProductQuantityInWarehouse
+        getQuantityInWarehouse
+        checkStockLevels
