@@ -6,3 +6,13 @@ These principles apply to object-oriented design, but they can be adapted to Jav
 3. **Liskov Substitution Principle (LSP)**
 4. **Interface Segregation Principle (ISP)**
 5. **Dependency Inversion Principle (DIP)**
+
+
+By adhering to the **SOLID** principles, you create software that is:
+
+1. **Easier to maintain** – Each class or module has a focused purpose.
+2. **Easier to extend** – New functionality can be added without modifying existing code.
+3. **Easier to refactor** – Code changes in one place won’t have unexpected effects elsewhere.
+4. **More testable** – Since responsibilities are decoupled, you can test each part in isolation.
+
+These principles, when applied effectively in JavaScript, help improve code quality and maintainability over time.
