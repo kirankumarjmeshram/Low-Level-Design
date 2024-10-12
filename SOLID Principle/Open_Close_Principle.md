@@ -8,7 +8,7 @@ The **Open/Closed Principle (OCP)** states that software entities (like classes,
 
 By adhering to OCP, you can add new features or functionality without altering existing code, which helps avoid introducing bugs into stable, tested parts of your system. This also makes it easier to extend the behavior of classes without rewriting them.
 
-#### **Example:**
+#### **Example 1:**
 
 ##### Without OCP (Direct Modification):
 
@@ -83,3 +83,55 @@ In this refactored example:
 * The base `Notification` class defines an interface (`send()` method) that each notification type must implement.
 * Each new notification type is **extended** from the `Notification` base class, adhering to OCP. Now, if you want to add more notification types (like push notifications), you can do so by adding new classes without modifying existing ones.
 * The existing code is **closed for modification** but **open for extension** through subclassing.
+
+#### **Example 2:**
+
+##### Without OCP (AreaCalculator ):
+
+```js
+class AreaCalculator {
+    calculateArea(shape) {
+        if (shape.type === 'circle') {
+            return Math.PI * shape.radius * shape.radius;
+        } else if (shape.type === 'rectangle') {
+            return shape.width * shape.height;
+        } else if (shape.type === 'triangle') {
+            return (shape.base * shape.height) / 2;
+        } else {
+            return 0;
+        }
+    }
+}
+
+const circle = { type: 'circle', radius: 10 };
+const rectangle = { type: 'rectangle', width: 5, height: 10 };
+
+const calculator = new AreaCalculator();
+console.log(calculator.calculateArea(circle)); // 314.159...
+console.log(calculator.calculateArea(rectangle)); // 50
+```
+
+#### Problems with the Above Code:
+
+1. **Not Closed for Modification:**
+   * Every time a new shape is introduced (e.g., triangle, polygon, etc.), we must modify the `calculateArea()` method by adding more `if-else` checks. This increases the risk of introducing bugs.
+1. **Violated Open for Extension:**
+   * The logic for calculating areas of different shapes is hardcoded. If we want to add a new shape, we have to change the class itself.
+
+##### With OCP (Extending without Modifying):
+```js
+class AreaCalculator {
+    calculateArea() {
+        throw new Error("This Method Should be overriden");
+    }
+}
+class CircleAreaCalculator extends AreaCalculator {
+    constructor(radius){
+        super();
+        this.radius = radius;
+    }
+    calculateArea(){
+        return Math.PI * this.radius * this.radius;
+    }
+}
+```
