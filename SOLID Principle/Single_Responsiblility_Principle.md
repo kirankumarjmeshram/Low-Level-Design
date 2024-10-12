@@ -2,7 +2,9 @@
 
 #### **Definition** :
 
-The **Single Responsibility Principle (SRP)** states that a class or module should have only one responsibility or reason to change. This means each class should do only one thing, ensuring that it is focused and easier to maintain.
+* The **Single Responsibility Principle (SRP)** states that a class or module should have only one responsibility or reason to change. This means each class should do only one thing, ensuring that it is focused and easier to maintain.
+* Gather togather those things that chang for the same reason, and separate those things that change for different reason.
+* In short, It  says that a subsystem, module, class, or even function should not have more than one reason to change the class.
 
 #### **Why It’s Important** :
 
