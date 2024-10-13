@@ -2,8 +2,9 @@
 
 * **Definition** : Objects of a **superclass** should be **replaceable** with **objects of a subclass without affecting the correctness of the program**.
 * **Explanation** :
-* This principle ensures that subclasses can stand in for their parent classes without breaking the application. In other words, derived classes should enhance functionality but never compromise the behavior expected from the base class.
-* Violating LSP leads to brittle, tightly coupled code that is difficult to extend or modify.
+  * This principle ensures that subclasses can stand in for their parent classes without breaking the application. In other words, derived classes should enhance functionality but never compromise the behavior expected from the base class.
+  * Parent class should have only that methods **only** which alligns with child classes.
+  * Violating LSP leads to brittle, tightly coupled code that is difficult to extend or modify.
 * **JavaScript Example** :
 
 **Violates LSP: Penguin cannot fly like other birds**
@@ -13,12 +14,16 @@
     fly() {
       console.log('Flying');
     }
+    makeSound(){}
   }
 
   class Penguin extends Bird {
     fly() {
       throw new Error('Penguins cannot fly');
     }
+    makeSound(){
+	console.log("Penguine Sound")
+	}
   }
 
   // Using Bird objects
@@ -33,9 +38,15 @@
 
 ```js
 
-  class Bird {
-    move() {
-      console.log('Moving');
+  class BasicBird {
+  	makeSound(){}
+   }
+  class Bird extends BasicBird {
+   // move() {
+     // console.log('Moving');
+   // }
+    fly() {
+      console.log('Flying');
     }
   }
 
@@ -45,8 +56,8 @@
     }
   }
 
-  class Penguin extends Bird {
-    move() {
+  class Penguin extends BasicBird {
+    fly() {
       console.log('Penguins swim but cannot fly');
     }
   }
