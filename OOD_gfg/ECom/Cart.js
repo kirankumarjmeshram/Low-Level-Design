@@ -12,7 +12,11 @@ class Cart {
     }
 
     updateItemCount(item, newCount){
-        item.updateCount(newCount);
+        const cartItem = this.itemList.find(i => i.product === item.product);
+        if (cartItem) {
+            // item will have count 
+            cartItem.count = newCount;
+        }
     }
 
     getItemList() {

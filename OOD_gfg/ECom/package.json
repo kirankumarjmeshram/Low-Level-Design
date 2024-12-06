@@ -4,8 +4,9 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-      "start": "node MyECom.js"
+        "start": "node MyECom.js"
     },
     "dependencies": {
+        "your-project-name": "file:"
     }
-  }
+}
