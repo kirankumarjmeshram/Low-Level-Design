@@ -1,24 +1,13 @@
 const Ticket = require("./Ticket");
 class AutomatedSystem {
     constructor(parkingLot) {
-        this.parkingLot = parkingLot; // Ensure this is properly assigned
+        this.parkingLot = parkingLot; 
     }
 
     fetchAvailableSpot() {
         return this.parkingLot.getAvailableSpot(); // Access the parkingLot method
     }
 
-    // generateTicket(customer) {
-    //     const availableSpot = this.fetchAvailableSpot();
-    //     if (!availableSpot) {
-    //         console.log("No available parking spots.");
-    //         return null;
-    //     }
-    //     const vehicle = customer.getVehicle();
-    //     const ticket = new Ticket(vehicle, availableSpot);
-    //     this.parkingLot.currentTickets.set(ticket.getId(), ticket);
-    //     return ticket;
-    // }
 
     generateTicket(customer) {
         const availableSpot = this.fetchAvailableSpot();
