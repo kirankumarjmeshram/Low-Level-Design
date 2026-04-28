@@ -2,7 +2,7 @@
 
 #### **Definition** :
 
-The **Open/Closed Principle (OCP)** states that software entities (like classes, modules, or functions) should be  **open for extension but closed for modification** . This means you should be able to add new functionality to an existing class without modifying its existing code, thereby preventing regressions and making the system more maintainable.
+The **Open/Closed Principle (OCP)** states that software entities (like classes, modules, or functions) should be  **open for extension but closed for modification** . This means **you should be able to add new functionality to an existing class without modifying its existing code**, thereby preventing regressions and making the system more maintainable.
 
 #### **Why It’s Important** :
 
@@ -115,10 +115,11 @@ console.log(calculator.calculateArea(rectangle)); // 50
 
 1. **Not Closed for Modification:**
    * Every time a new shape is introduced (e.g., triangle, polygon, etc.), we must modify the `calculateArea()` method by adding more `if-else` checks. This increases the risk of introducing bugs.
-1. **Violated Open for Extension:**
+2. **Violated Open for Extension:**
    * The logic for calculating areas of different shapes is hardcoded. If we want to add a new shape, we have to change the class itself.
 
 ##### With OCP (Extending without Modifying):
+
 ```js
 class AreaCalculator {
     calculateArea() {
