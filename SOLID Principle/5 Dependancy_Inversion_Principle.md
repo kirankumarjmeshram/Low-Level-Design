@@ -14,11 +14,21 @@
 
 DIP suggests using **interfaces** or **abstract classes** as intermediaries between high-level and low-level modules. By introducing abstractions, we can swap out different implementations of low-level components without changing the high-level logic. This also makes the system easier to extend.
 
+**Don’t tie your code to a specific thing. Use a flexible connection instead.**
+
 ### **Key Benefits**
 
 * **Loose coupling** : The high-level logic doesn't need to know the details of low-level components.
 * **Flexibility** : You can change or replace low-level modules (e.g., swapping out a database or service) without modifying the high-level logic.
 * **Testability** : High-level modules can be easily tested using mock or stub implementations of low-level components.
+
+
+# Where You Use DIP in LLD
+
+* Database layer (switch DB easily)
+* Payment systems (UPI, Card, Wallet)
+* Notification systems (Email, SMS)
+* Storage (S3, local, CDN)
 
 ### **Detailed Example**
 
@@ -121,6 +131,68 @@ in this refactoring example:
 * **Testability** : You can test the `UserRepository` class with mock `Database` implementations.
 * **Scalability** : Adding new databases (e.g., MongoDB) or external services becomes easier because high-level code remains the same.
 
+## Example 2
+
+#### **Without Dependency Injection**
+
+```js
+class Razorpay {
+  pay() {
+    console.log("Paid using Razorpay");
+  }
+}
+
+class OrderService {
+  constructor() {
+    this.payment = new Razorpay(); // ❌ tightly coupled
+  }
+
+  placeOrder() {
+    this.payment.pay();
+  }
+}
+```
+
+#### **With Dependency Injection + Abstraction**
+
+```js
+class Payment {
+  pay() {}
+}
+
+class Razorpay extends Payment {
+  pay() {
+    console.log("Razorpay");
+  }
+}
+
+class Stripe extends Payment {
+  pay() {
+    console.log("Stripe");
+  }
+}
+
+class OrderService {
+  constructor(payment) {
+    this.payment = payment; // ✅ injected
+  }
+
+  placeOrder() {
+    this.payment.pay();
+  }
+}
+```
+
+**Without DI:**
+
+    OrderService → Razorpay (fixed 🔒)
+
+**With DI:**
+
+    OrderService → Payment (flexible 🔌)
+                     			 ↑
+            	Razorpay / Stripe / PayPal
+
 
 ### **Applications of DIP**
 
@@ -128,3 +200,4 @@ in this refactoring example:
    * In real-world applications, **Dependency Injection (DI)** frameworks are often used to achieve DIP. Instead of manually passing the dependency, a DI framework (like Spring in Java or Angular in JavaScript) automatically injects the appropriate low-level module at runtime based on configuration.
 2. **Microservices** :
    * In a microservice architecture, DIP can be applied by having high-level services depend on **API contracts** (like gRPC or REST interfaces) instead of depending directly on specific implementations of services.
+3. **Why dependency injection?”****- “It reduces coupling, improves testability, and allows swapping implementations without modifying core logic.”**
