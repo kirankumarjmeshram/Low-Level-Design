@@ -50,36 +50,31 @@ makeBirdFly(penguin);
 **Solution: Reorganize the inheritance hierarchy**
 
 ```js
+// Base class: only common behavior
+class Bird {
+  makeSound() {
+    console.log('Some bird sound');
+  }
+}
 
-  class BasicBird {
-  	makeSound(){}
-   }
-  class Bird extends BasicBird {
-   // move() {
-     // console.log('Moving');
-   // }
-    fly() {
-      console.log('Flying');
-    }
+// Separate capability: Flying birds ONLY
+class FlyingBird extends Bird {
+  fly() {
+    console.log('Flying');
+  }
+}
+
+// Non-flying bird
+class Penguin extends Bird {
+  // ❌ No fly() method -> correct
+  swim() {
+    console.log('Swimming');
   }
 
-  class FlyingBird extends Bird {
-    fly() {
-      console.log('Flying');
-    }
+  makeSound() {
+    console.log('Penguin sound');
   }
-
-  class Penguin extends BasicBird {
-    fly() {
-      console.log('Penguins swim but cannot fly');
-    }
-  }
-
-  const flyingBird = new FlyingBird();
-  flyingBird.fly(); // Works
-
-  const penguin2 = new Penguin();
-  penguin2.move(); // Correct behavior for penguin
+}
 ```
 
 In the corrected version, we respect LSP by ensuring subclasses (`Penguin`) don’t break the functionality expected from the parent class (`Bird`). Penguins still "move," but in their specific way (swimming instead of flying).
